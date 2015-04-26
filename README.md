@@ -32,6 +32,19 @@ FIXME: explanation
 
     $ java -jar so_long_ow2-0.1.0-standalone.jar [args]
 
+
+## SQL search queries
+
+SELECT *
+FROM ow2_nodes as N,
+     ow2_texts as T
+WHERE idArea = 4
+  AND T.`idNode` = N.`idNode`
+  AND T.`isValid` = 1
+
+
+
+
 ## Options
 
 FIXME: listing of options this app accepts.

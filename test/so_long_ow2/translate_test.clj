@@ -46,3 +46,12 @@
           ]
       (is (= dst prc)))))
 
+; [*] [http://www.grandstream.com/|Grandstream web site]
+
+(deftest two-links-are-broken
+  (testing "2 links are broken"
+    (let [src "[*] [http://www.grandstream.com/|Grandstream web site]"
+          dst "<*> [Grandstream web site](http://www.grandstream.com/)"
+          prc (t/translate-ow2 src)
+          ]
+      (is (= dst prc)))))

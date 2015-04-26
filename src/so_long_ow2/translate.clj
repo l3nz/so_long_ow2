@@ -22,12 +22,18 @@
 
 
 (defn node-from-name
-  "Mancano i namespaces"
+  "Mancano i namespaces e le URL"
 
   [name]
+  (if (.startsWith name "http:")
+    name
+
+
   (let [lcname (.trim (.toLowerCase name))
         nospaces (clojure.string/replace lcname #"\s+" "_")]
-    (str "node_" nospaces ".md")))
+    (str "node_" nospaces ".md"))
+
+    ))
 
 
 (defn replace-code
@@ -60,7 +66,7 @@
   [src]
 
  (clojure.string/replace src
-                         #"(?msi)\[(.*?)\|(.+?)]"
+                         #"(?i)\[(.*?)\|(.+?)]"
                          #(create-md-link (nth %1 1) (nth %1 2)))
   )
 
@@ -70,7 +76,7 @@
   [src]
 
  (clojure.string/replace src
-                         #"(?msi)\[(.*?)]"
+                         #"(?i)\[(.*?)]"
                          #(create-md-link (nth %1 1) (nth %1 1)))
   )
 
@@ -121,8 +127,8 @@
   (-> owml
       replace-code
       replace-plugins
-      replace-double-links
       replace-monochars
+      replace-double-links
       replace-single-links
       replace-bold
       replace-italics
