@@ -1,6 +1,13 @@
 # so_long_ow2
 
-FIXME: description
+Translate an ow2 wiki database into a set of markdown files, suitable for Jekyll.
+To make my life complex and learn something new, let's do it in Clojure.
+
+References:
+
+* ow2 markup: http://ow2wiki.cvs.sourceforge.net/viewvc/ow2wiki/ow2wiki/DEVELOPERS/unitTest/html_parser_unitTest.php?revision=1.1&view=markup
+
+
 
 ## Installation
 
@@ -30,7 +37,6 @@ FIXME: listing of options this app accepts.
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the MIT License.
