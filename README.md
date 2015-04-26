@@ -15,6 +15,19 @@ Download from http://example.com/FIXME.
 
 ## Usage
 
+Run tests: evaluate namespaces manually and open an Instarepl and
+
+(clojure.test/run-all-tests)
+
+
+
+A good page to translate is:
+
+http://astrecipes.net/index.php?from=60&q=AstRecipes/Using%20a%20HT-488%20with%20Asterisk
+
+
+
+
 FIXME: explanation
 
     $ java -jar so_long_ow2-0.1.0-standalone.jar [args]
@@ -37,6 +50,6 @@ FIXME: listing of options this app accepts.
 
 ## License
 
-Copyright © 2015 
+Copyright © 2015
 
 Distributed under the MIT License.
