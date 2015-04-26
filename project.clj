@@ -3,7 +3,8 @@
   :url "http://example.com/FIXME"
   :license {:name "MIT License"
             :url "?"}
-  :dependencies [[org.clojure/clojure "1.6.0"]]
+  :dependencies [[org.clojure/clojure "1.6.0"]
+                 [org.clojure/tools.trace "0.7.8"]]
   :main ^:skip-aot so-long-ow2.core
   :target-path "target/%s"
   :plugins [[lein-marginalia "0.8.0"]]
