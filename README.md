@@ -27,6 +27,12 @@ http://astrecipes.net/index.php?from=60&q=AstRecipes/Using%20a%20HT-488%20with%2
 
 
 
+(spit "resources/Sample.md"
+      (so-long-ow2.translate/translate-ow2
+        (slurp "resources/SampleNode.txt")))
+
+
+
 
 FIXME: explanation
 

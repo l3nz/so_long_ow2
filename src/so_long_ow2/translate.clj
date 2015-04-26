@@ -12,13 +12,32 @@
 
 ;; http://ow2wiki.cvs.sourceforge.net/viewvc/ow2wiki/ow2wiki/DEVELOPERS/unitTest/owmlManager_unitTest.php?revision=1.3&view=markup
 
+(defn funnyencode
+  "Quota le parentesi quadre"
+  [src]
+  (let [leftrepl (clojure.string/replace src  "[" FUNNYLEFT)
+        rightrepl (clojure.string/replace leftrepl  "]" FUNNYRIGHT) ]
+    (str rightrepl)))
+
+
+
+(defn replace-funny-arrows
+  "Rimette le parentesi quadre"
+  [src]
+  (let [leftrepl (clojure.string/replace src FUNNYLEFT "[")
+        rightrepl (clojure.string/replace leftrepl FUNNYRIGHT "]") ]
+    (str rightrepl)))
+
+
+
+
 
 (defn prespace-code-blk
   "Trasforma il contenuto di un blocco CODE in
   una serie di righe spaziate"
   [s]
   (let [lines (clojure.string/split-lines s)]
-    (apply str (map #( str "    " %1 "\n") lines))))
+    (apply str (map #( str "    " (funnyencode %1) "\n") lines))))
 
 
 (defn node-from-name
@@ -96,7 +115,7 @@
   [src]
 (clojure.string/replace src
                          #"(?i)\"\"(.+?)\"\""
-                         #(str "*" (nth %1 1) "*" ))
+                         #(str "**" (nth %1 1) "**" ))
 )
 
 (defn replace-italics
@@ -104,16 +123,9 @@
   [src]
 (clojure.string/replace src
                          #"(?i)''(.+?)''"
-                         #(str "**" (nth %1 1) "**" ))
+                         #(str "*" (nth %1 1) "*" ))
 )
 
-
-
-
-(defn replace-funny-arrows [src]
-  (let [leftrepl (clojure.string/replace src FUNNYLEFT "[")
-        rightrepl (clojure.string/replace leftrepl FUNNYRIGHT "]") ]
-    (str rightrepl)))
 
 
 
