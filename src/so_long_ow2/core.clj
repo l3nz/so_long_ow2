@@ -1,5 +1,8 @@
 (ns so-long-ow2.core
-  (:require [clojure.java.jdbc :as sql])
+  (:require
+    [clojure.java.jdbc :as sql]
+    [so-long-ow2.translate :as translate]
+  )
   (:gen-class))
 
 (defn -main
@@ -40,13 +43,6 @@
   ( str dtTxt "-" ts )))
 
 
-;; il nodo 101 e' corto
-(defn loadNode [nodeId]
-  (let [node (loadNodeText nodeId)
-        tags (loadNodeTags nodeId)
-        file (fileName (:dtcreation node) (:title node))]
-    (assoc node :tags tags :fname file)))
-
 
 (defn loadNodeText [nodeId]
   (first (qq (str
@@ -65,6 +61,15 @@ WHERE NT.`tag_id` = T.`id_tag`
   AND NT.`node_id` = " nodeId)]
      (map :tag (qq q))))
 
+
+;; il nodo 101 e' corto
+(defn loadNode [nodeId]
+  (let [node (loadNodeText nodeId)
+        tags (loadNodeTags nodeId)
+        file (fileName (:dtcreation node) (:title node))]
+    (assoc node :tags tags :fname file)))
+
+
 (defn mkPreamble [node]
   (let [tags (apply str (map #(str " - " % "\n") (:tags node)))]
   (str "---
@@ -81,7 +86,7 @@ categories: update
   [nodeId nodehash]
   (let [node (loadNode nodeId)
         preamble (mkPreamble node)
-        body (so-long-ow2.translate/translate-ow2 (:text node) nodehash)
+        body (translate/translate-ow2 (:text node) nodehash)
         fname (:fname node)
         debug ( str "## NODEID: " (:idnode node) "\n\n")
         all (str preamble body)]
